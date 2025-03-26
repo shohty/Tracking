@@ -1,0 +1,104 @@
+*******************************************************************************
+ ReconCyDet parameter
+*******************************************************************************
+
+  General parameters for CyDet reconstruction
+
+    < ReconCyDet.Algorithms     = { ICyDetUserTruthHitMaker ICyDetSimpleDigitization ICyDetTriggerMaker ICyDetEventInfoMaker ICyDetUserTruthTrackMaker IMCTrackFinder ITrackFitting } >
+    < ReconCyDet.AlgorithmNames = { ICyDetUserTruthHitMaker ICyDetSimpleDigitization ICyDetTriggerMaker ICyDetEventInfoMaker ICyDetUserTruthTrackMaker IMCTrackFinder ITrackFitting } >
+    < ReconCyDet.Debug = 0 > If 1, print debug infomation
+    < ReconCyDet.UserEventModel = 1 > If 1, use user event model
+    < ReconCyDet.SaveDebugRoot = 1 > If 1, save debug root tree
+    < ReconCyDet.SaveUserData = 0 > If 1, save user data
+    < ReconCyDet.RootOutput = ReconCyDet.root > Root file to output debug TTree(s)
+
+  ICyDetUserTruthHitMaker parameters:
+
+    < ReconCyDet.ICyDetUserTruthHitMaker.SaveDebugTree = 1 > If 1, save debug root tree
+    < ReconCyDet.ICyDetUserTruthHitMaker.SkipEvent = 1 > If 1, skip event without CDC or CTH hit
+
+  ICyDetSimpleDigitization parameters:
+
+    < ReconCyDet.ICyDetSimpleDigitization.Debug = 0 >
+    < ReconCyDet.ICyDetSimpleDigitization.SaveDebugTree = 1 >
+    < ReconCyDet.ICyDetSimpleDigitization.SkipEvent = 1 > If 1, skip event without CDC or CTH hit
+    < ReconCyDet.ICyDetSimpleDigitization.CDCDeadTime = 1000000 > Dead time of electronics(ns)
+    < ReconCyDet.ICyDetSimpleDigitization.CTHDeadTime = 1000000 > Dead time of electronics(ns)
+
+  ICyDetTriggerMaker
+
+    < ReconCyDet.ICyDetTriggerMaker.SaveDebugTree = 1 >
+    Multiple of CTH time resolution, CTH time res = ( 25 ns / ReconCyDet.ICyDetSimpleDigitization.Multiple )
+    < ReconCyDet.ICyDetTriggerMaker.Multiple = 25. >
+    < ReconCyDet.ICyDetTriggerMaker.SimDetectorResponse.SignalWindowStart = 0 >
+    < ReconCyDet.ICyDetTriggerMaker.SimDetectorResponse.SignalWindowEnd = 1600 >
+    < ReconCyDet.ICyDetTriggerMaker.Trigger = MCTrigger >
+
+  ICyDetEventInfoMaker
+
+    < ReconCyDet.ICyDetEventInfoMaker.SaveDebugTree = 1 >
+
+  ICyDetUserTruthTrackMaker parameters:
+
+    < ReconCyDet.ICyDetUserTruthTrackMaker.SaveDebugTree   = 1 > If 1, save debug root tree
+    < ReconCyDet.ICyDetUserTruthTrackMaker.TriggerCut      = 15  > trigger type cut, 15 is 4-fold coincident
+    < ReconCyDet.ICyDetUserTruthTrackMaker.MaxLayerCut     = 5   >
+    < ReconCyDet.ICyDetUserTruthTrackMaker.MaxTurnCut      = 0   >
+    < ReconCyDet.ICyDetUserTruthTrackMaker.SingleCandi     = 1   > assume only one track candidate or not
+    < ReconCyDet.ICyDetUserTruthTrackMaker.OnlyFirstTurn   = 0   >
+    < ReconCyDet.ICyDetUserTruthTrackMaker.SkipGuardLayer  = 1   >
+    < ReconCyDet.ICyDetUserTruthTrackMaker.SkipEndCap      = 1   > skip hits on endcap or not
+    < ReconCyDet.ICyDetUserTruthTrackMaker.DriftCutLow     = -999. > low cut of drift distance
+    < ReconCyDet.ICyDetUserTruthTrackMaker.DriftCutHigh    = 999. > high cut of drift distance
+
+  IRANSACTrackFinder parameters:
+
+    < ReconCyDet.IRANSACTrackFinder.SaveDebugTree = 0 >
+    < ReconCyDet.IRANSACTrackFinder.AlgorithmType = PrepareHits >
+    < ReconCyDet.IRANSACTrackFinder.MaxTurnCut = 1 >
+    < ReconCyDet.IRANSACTrackFinder.MaxLayerCut = 5 >
+    < ReconCyDet.IRANSACTrackFinder.NLayersInSeg = 5 >
+    < ReconCyDet.IRANSACTrackFinder.DriftError = 0.2 > Position resolution in [mm]
+    < ReconCyDet.IRANSACTrackFinder.HelixFittingIter = 5 >
+
+  IMCTrackFinder parameters:
+
+    < ReconCyDet.IMCTrackFinder.Debug = 0 >
+    < ReconCyDet.IMCTrackFinder.SaveDebugTree = 1 >
+    < ReconCyDet.IMCTrackFinder.NHitsCut        = 10  > require at least how many hits
+    < ReconCyDet.IMCTrackFinder.SmearTrack      = 0   > smear track or not
+    < ReconCyDet.IMCTrackFinder.SmearTrkResPosX = 5. > track position resolution in X axis (mm)
+    < ReconCyDet.IMCTrackFinder.SmearTrkResPosY = 1. > track position resolution in Y axis (mm)
+    < ReconCyDet.IMCTrackFinder.SmearTrkResPosZ = 1. > track position resolution in Z axis (mm)
+    < ReconCyDet.IMCTrackFinder.SmearTrkResMomX = 5.  > track momentum resolution in X axis (MeV)
+    < ReconCyDet.IMCTrackFinder.SmearTrkResMomY = 1.  > track momentum resolution in Y axis (MeV)
+    < ReconCyDet.IMCTrackFinder.SmearTrkResMomZ = 1.  > track momentum resolution in Z axis (MeV)
+    < ReconCyDet.IMCTrackFinder.TruthLR         = 1   > set truth left-right or not
+    < ReconCyDet.IMCTrackFinder.DriftError = 0.2 > Position resolution in [mm]
+    < ReconCyDet.IMCTrackFinder.HitEfficiency   = 1.0  > hit efficiency of track finding
+    < ReconCyDet.IMCTrackFinder.HitPurity = 1.0  > hit purity of track finding
+
+  ITrackFitting parameters:
+
+    < ReconCyDet.ITrackFitting.Debug = 0 >
+      ReconCyDet.ITrackFitting.SaveDebugTree = 1 > If 1, save debug root tree
+    < ReconCyDet.ITrackFitting.InputReconObject = IMCTrackFinder >
+    < ReconCyDet.ITrackFitting.InputReconObject = IRANSACTrackFinder >
+    < ReconCyDet.ITrackFitting.FitterType      = DAFRef > type of fitter used in genfit
+    < ReconCyDet.ITrackFitting.Brem = 0 >
+    < ReconCyDet.ITrackFitting.NoEffects = 0 >
+    < ReconCyDet.ITrackFitting.Resort = 1 >
+    < ReconCyDet.ITrackFitting.SpacePointSmear = 0 >
+    < ReconCyDet.ITrackFitting.SkipWire = 0 >
+    < ReconCyDet.ITrackFitting.PDG = 11 >
+    < ReconCyDet.ITrackFitting.MeasType = 1 >
+    < ReconCyDet.ITrackFitting.Iter = 1 >
+    < ReconCyDet.ITrackFitting.DeltaWeight = 0.05 >
+    < ReconCyDet.ITrackFitting.DeltaPVal = 0.05 >
+    < ReconCyDet.ITrackFitting.UseReconDrift = 1 >
+    < ReconCyDet.ITrackFitting.ExtrapTrack = 1 >
+    < ReconCyDet.ITrackFitting.GenfitMaxIt = 100 >
+    < ReconCyDet.ITrackFitting.Trigger = MCTrigger >
+      ReconCyDet.ITrackFitting.InputTrackCandidates = RTF_ReconTracks >
+    < ReconCyDet.ITrackFitting.InputTrackCandidates = MCTrackFinder_ReconTracks >
+

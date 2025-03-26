@@ -1,0 +1,5 @@
+source /scratchfs/bes/zkzhang/COMET/Tracking/MCTracking/20241202_SheetRotTrack/setup.sh
+rm /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/Field_Rot_x2_10_001.root ;
+rm /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/RootTree_Field_Rot_x2_10_001.root ;
+rm /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/log/log_Field_Rot_x2_10_001 ;
+/workfs2/bes/zkzhang/ICEDUST/build_packages/ReconCyDet/bin/RunReconCyDet -I /scratchfs/bes/zkzhang/COMET/Tracking/MCTracking/20241202_SheetRotTrack/input/input_001 -o /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/Field_Rot_x2_10_001.root -b /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/sim/output/Rot_x2_10.root -O "parameters=/scratchfs/bes/zkzhang/COMET/Tracking/MCTracking/20241202_SheetRotTrack/parameters" -O "debugOutput=/sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/RootTree_Field_Rot_x2_10_001.root"  > /sharefs/bes/zkzhang/Graduation/Tracking/MCTracking/20241202_SheetRotTrack/output/log/log_Field_Rot_x2_10_001
